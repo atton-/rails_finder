@@ -1,0 +1,25 @@
+<%= form_for(@tagged_file) do |f| %>
+  <% if @tagged_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tagged_file.errors.count, "error") %> prohibited this tagged_file from being saved:</h2>
+
+      <ul>
+      <% @tagged_file.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file_hash %><br />
+    <%= f.text_field :file_hash %>
+  </div>
+  <div class="field">
+    <%= f.label :tag %><br />
+    <%= f.text_field :tag %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

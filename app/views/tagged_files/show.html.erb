@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>File hash:</b>
+  <%= @tagged_file.file_hash %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @tagged_file.tag %>
+</p>
+
+
+<%= link_to 'Edit', edit_tagged_file_path(@tagged_file) %> |
+<%= link_to 'Back', tagged_files_path %>
