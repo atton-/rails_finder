@@ -2,5 +2,5 @@
 <p>Find me in app/views/top/index.html.erb</p>
 
 <% Dir.entries("public/resources").delete_if{|a|a.start_with?(".")}.each do |file|%>
-  <%= file%> <br>
+  <%= link_to file,"#{root_url}/public/resources/#{file}",:protocol=>'file://',:only_path =>false%> <br>
 <%end%>
