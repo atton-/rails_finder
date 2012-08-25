@@ -1,4 +1,6 @@
 RailsFinder::Application.routes.draw do
+  get "top/index"
+
   resources :tagged_files
 
   # The priority is based upon order of creation:
