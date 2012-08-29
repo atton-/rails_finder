@@ -1,5 +1,15 @@
 <h1>New tagged_file</h1>
 
-<%= render 'form' %>
+<%@tagged_file.file_name = params[:file_name]%>
+
+<%= form_for(@tagged_file) do |form|%>
+  <div class="field">
+    <%= form.label :file_name %>
+    <%= form.text_field :file_name ,:readonly => true%>
+
+    <%= form.label :tag %>
+    <%= form.text_field :tag %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', tagged_files_path %>
