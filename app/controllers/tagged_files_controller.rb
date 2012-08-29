@@ -44,7 +44,7 @@ class TaggedFilesController < ApplicationController
 
     respond_to do |format|
       if @tagged_file.save
-        format.html { redirect_to @tagged_file, notice: 'Tagged file was successfully created.' }
+        format.html { redirect_to top_index_path, notice: 'Tagged file was successfully created.' }
         format.json { render json: @tagged_file, status: :created, location: @tagged_file }
       else
         format.html { render action: "new" }
