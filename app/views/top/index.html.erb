@@ -1,10 +1,29 @@
 <h1>Top#index</h1>
 <p>
-<table border="2">
+<table border="1">
 <% @files.each do |file|%>
 <tr>
   <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
   <td><%= link_to "add tag", new_tagged_file_path, :file_name => file%></td>
 </tr>
 <%end%>
+</p>
+<p>
+<table border="2">
+<% @files.each do |file|%>
+<tr>
+  <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+  <td>Tag!!!!!</td>
+</tr>
+<%end%>
+</p>
+<p>
+<table border="3">
+<% @files.each do |file|%>
+<tr>
+  <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+  <td>Tag!!!!!</td>
+</tr>
+<%end%>
+</table>
 </p>
