@@ -1,6 +1,29 @@
 <h1>Top#index</h1>
-<p>Find me in app/views/top/index.html.erb</p>
-
+<p>
+<table border="1">
 <% @files.each do |file|%>
-  <%= link_to file,"#{root_url}/public/resources/#{file}",:protocol=>'file://',:only_path =>false%> <br>
+<tr>
+  <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+  <td>Tag!!!!!</td>
+</tr>
 <%end%>
+</p>
+<p>
+<table border="2">
+<% @files.each do |file|%>
+<tr>
+  <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+  <td>Tag!!!!!</td>
+</tr>
+<%end%>
+</p>
+<p>
+<table border="3">
+<% @files.each do |file|%>
+<tr>
+  <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+  <td>Tag!!!!!</td>
+</tr>
+<%end%>
+</table>
+</p>
