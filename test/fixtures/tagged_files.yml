@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  file_hash: MyString
+  file_name: MyString
   tag: MyString
 
 two:
-  file_hash: MyString
+  file_name: MyString
   tag: MyString

@@ -1,3 +1,3 @@
 class TaggedFile < ActiveRecord::Base
-  attr_accessible :file_hash, :tag
+  attr_accessible :file_name, :tag
 end

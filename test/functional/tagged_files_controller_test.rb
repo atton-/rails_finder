@@ -18,7 +18,7 @@ class TaggedFilesControllerTest < ActionController::TestCase
 
   test "should create tagged_file" do
     assert_difference('TaggedFile.count') do
-      post :create, tagged_file: { file_hash: @tagged_file.file_hash, tag: @tagged_file.tag }
+      post :create, tagged_file: { file_name: @tagged_file.file_name, tag: @tagged_file.tag }
     end
 
     assert_redirected_to tagged_file_path(assigns(:tagged_file))
@@ -35,7 +35,7 @@ class TaggedFilesControllerTest < ActionController::TestCase
   end
 
   test "should update tagged_file" do
-    put :update, id: @tagged_file, tagged_file: { file_hash: @tagged_file.file_hash, tag: @tagged_file.tag }
+    put :update, id: @tagged_file, tagged_file: { file_name: @tagged_file.file_name, tag: @tagged_file.tag }
     assert_redirected_to tagged_file_path(assigns(:tagged_file))
   end
 

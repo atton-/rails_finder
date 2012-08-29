@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>File hash</th>
+    <th>File name</th>
     <th>Tag</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @tagged_files.each do |tagged_file| %>
   <tr>
-    <td><%= tagged_file.file_hash %></td>
+    <td><%= tagged_file.file_name %></td>
     <td><%= tagged_file.tag %></td>
     <td><%= link_to 'Show', tagged_file %></td>
     <td><%= link_to 'Edit', edit_tagged_file_path(tagged_file) %></td>
