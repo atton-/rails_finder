@@ -4,7 +4,7 @@
 <% @files.each do |file|%>
 <tr>
   <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
-  <td><%= link_to "add tag", :controller => 'tagged_files', :action => 'new', :file_name => file%></td>
+  <td><%= link_to "add tag", new_tagged_file_path, :file_name => file%></td>
 </tr>
 <%end%>
 </p>
