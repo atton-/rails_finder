@@ -15,6 +15,11 @@
 
 <% # 表示テーブル %>
 <table border="2">
+  <tr>
+    <td bgcolor="#b0c4de">FileName</td>
+    <td bgcolor="#b0c4de">tag</td>
+    <td bgcolor="#b0c4de">Add</td>
+  </tr>
   <% @files.each do |file|%>
     <tr>
       <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
