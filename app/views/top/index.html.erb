@@ -4,8 +4,8 @@
   <% # 検索の種類のラジオボタン %>
   <%= radio_button 'radio_param', 'search_type', 'file',
     {checked: (params[:radio_param].nil? || params[:radio_param][:search_type] == 'file')} %> ファイル名検索
-    <%= radio_button 'radio_param', 'search_type', 'tag',
-      {checked: !params[:radio_param].nil? && params[:radio_param][:search_type] == 'tag'} %> タグ検索
+  <%= radio_button 'radio_param', 'search_type', 'tag',
+    {checked: !params[:radio_param].nil? && params[:radio_param][:search_type] == 'tag'} %> タグ検索
 
   <% # 検索フォーム %>
   <%= text_field_tag :keyword,params[:keyword] %>
@@ -18,7 +18,12 @@
   <% @files.each do |file|%>
     <tr>
       <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
-      <td><%= @tags[file].join(" ") %></td>
+      <td>
+        <% @tags[file].each do |tag| %>
+          <%= link_to tag, top_index_path(keyword: tag)%>
+          <%= " " %>
+        <% end %>
+      </td>
       <td><%= link_to "add tag", new_tagged_file_path(file_name: file)%></td>
     </tr>
   <% end %>
