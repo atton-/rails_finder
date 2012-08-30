@@ -54,13 +54,13 @@ class TopController < ApplicationController
     # patternを含むタグを持っているファイル名の配列を返す
     selected_tag = TaggedFile.where("tag like '%#{pattern}%'")
 
-    # タグが見つからない場合
+    # patternを含むタグが見つからない場合
     return [] if selected_tag.empty?
 
-    # 検索対象のタグを持ってるファイル名配列を作る
+    # patternを含むタグを持っているファイル名配列を作る
     selected_tag.map!{|a|a.file_name}
 
-    # タグを持ってるファイル名配列に存在ものだけ残す
+    # タグを持っているファイル名のみ配列に残す
     files = resources_list
     return [] if files.empty?
 
