@@ -10,7 +10,7 @@ class TopController < ApplicationController
     @files.each do |file|
       @tags[file] = TaggedFile.where({:file_name => file}).map{|a|a.tag}
     end
-
+    debugger
     return unless params[:radio_param]
 
     # 検索(@filesを絞り込む)
