@@ -11,8 +11,10 @@ class TopController < ApplicationController
       @tags[file] = TaggedFile.where({:file_name => file}).map{|a|a.tag}
     end
 
+    return unless params[:radio_param]
+
     # 検索(@filesを絞り込む)
-    case params[:search_type]
+    case params[:radio_param][:search_type]
     when "file"
       # ファイル名指定
       @files.select!{|file|file.include?(params[:keyword])}

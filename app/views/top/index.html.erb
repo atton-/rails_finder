@@ -1,7 +1,11 @@
 <h1>rails finder</h1>
 
-<% # 検索フォーム %>
 <%= form_tag top_index_path, {:method => "get"} do %> 
+  <% # 検索の種類のラジオボタン %>
+  <%= radio_button 'radio_param', 'search_type', 'file',{:checked => true}%> ファイル名検索
+  <%= radio_button 'radio_param', 'search_type', 'tag'%> タグ検索
+
+  <% # 検索フォーム %>
   <%= text_field_tag :keyword %>
   <%= submit_tag "search" %>
 <% end %>
