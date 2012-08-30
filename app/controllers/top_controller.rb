@@ -14,7 +14,7 @@ class TopController < ApplicationController
     case params[:radio_param][:search_type]
     when "file"
       # ファイル名指定検索
-      @files.select!{|file|file.include?(params[:keyword])}
+      @files = file_name_search params[:keyword]
       @tags = collect_tags @files
     when "tag"
       # タグ指定検索
@@ -42,6 +42,12 @@ class TopController < ApplicationController
       tags[file] = TaggedFile.where({:file_name => file}).map{|a|a.tag}
     end
     tags
+  end
+
+  def file_name_search pattern
+    # pattern を含むファイル名の配列を返す
+    TaggedFile.select("distinct file_name").
+      where("file_name like '%#{pattern}%'").map{|a|a.file_name}
   end
 
   def tag_search pattern
