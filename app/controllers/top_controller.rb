@@ -37,9 +37,11 @@ class TopController < ApplicationController
 
     return {} if files.nil?
 
+    all_tag = TaggedFile.all
+
     tags = {}
     files.each do |file|
-      tags[file] = TaggedFile.where({:file_name => file}).map{|a|a.tag}
+      tags[file] = all_tag.select{|a|a.file_name == file}.map{|a|a.tag}
     end
     tags
   end
