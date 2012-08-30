@@ -19,14 +19,22 @@ class TopController < ApplicationController
       @files.select!{|file|file.include?(params[:keyword])}
     when "tag"
       # タグ指定
-      selected_tag = @tags.select do |file,tags|
-        return false if tags.nil?
+      selected_tag = TaggedFile.where("tag like '%#{params[:keyword]}%'")
 
-        tags.any? do |tag|
-          tag.include?(params[:keyword])
-        end 
-      end 
-      @files.select!{|file|selected_tag.keys.include?(file)}
+      # タグが見つからない場合
+      if selected_tag.empty?
+        @files = []
+        return
+      end
+
+      # 検索対象のタグを持ってるファイル名一覧を作る
+      selected_tag.map!{|a|a.file_name}
+
+      @files.select! do |file|
+        return false if selected_tag.empty?
+        selected_tag.include?(file)
+      end
+
     else
       # 何も無し
     end
