@@ -1,5 +1,13 @@
-<h1>Top#index</h1>
-<p>
+<h1>rails finder</h1>
+
+<% # 検索フォーム %>
+<%= form_tag top_index_path, {:method => "get"} do %> 
+  <%= text_field_tag :keyword %>
+  <%= submit_tag "search" %>
+<% end %>
+
+
+
 <table border="2">
 <% @files.each do |file|%>
 <tr>
@@ -8,4 +16,3 @@
   <td><%= link_to "add tag", new_tagged_file_path(file_name: file)%></td>
 </tr>
 <%end%>
-</p>
