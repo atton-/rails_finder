@@ -18,6 +18,12 @@ class TopController < ApplicationController
       @files.select!{|file|file.include?(params[:keyword])}
     when "tag"
       # タグ指定
+      selected_tag = @tags.select do |file,tags|
+        tags.any? do |tag|
+          tag.include?(params[:keyword])
+        end 
+      end 
+      @files.select!{|file|selected_tag.keys.include?(file)}
     else
       # 何も無し
     end
