@@ -10,7 +10,9 @@ class TopController < ApplicationController
     @files.each do |file|
       @tags[file] = TaggedFile.where({:file_name => file}).map{|a|a.tag}
     end
-    return unless params[:radio_param]
+
+    # params が無いなら、全てのデータを表示したいのででここで終わる
+    return if params[:radio_param].nil?
 
     # 検索(@filesを絞り込む)
     case params[:radio_param][:search_type]
@@ -23,7 +25,6 @@ class TopController < ApplicationController
     else
       # 何も無し
     end
-
   end
 
   private
