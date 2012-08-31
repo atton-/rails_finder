@@ -46,9 +46,14 @@ class TopController < ApplicationController
     tags
   end
 
-  def file_name_search pattern
-    # pattern を含むファイル名の配列を返す
-    resources_list.select{|a|a.include? pattern}
+  def file_name_search patterns
+    # patterns を全て含むファイル名の配列を返す
+    # patterns はスペースで区切られた検索patternを想定
+    resources_list.select do |file|
+      patterns.split(" ").all? do |pattern|
+        file.include? pattern
+      end
+    end
   end
 
   def tag_search pattern
