@@ -33,7 +33,7 @@ class TopController < ApplicationController
   end
 
   def collect_tags files
-    # files 全てから(file_name=>tagの配列)のハッシュを返す
+    # files 全てに対応した(file_name=>tagの配列)のハッシュを返す
 
     return {} if files.nil?
 
@@ -48,7 +48,7 @@ class TopController < ApplicationController
 
   def file_name_search patterns
     # patterns を全て含むファイル名の配列を返す
-    # patterns はスペースで区切られた検索patternを想定
+    # patterns はスペースで区切られた検索patternの文字列を想定
     resources_list.select do |file|
       patterns.split(" ").all? do |pattern|
         file.include? pattern
@@ -56,11 +56,14 @@ class TopController < ApplicationController
     end
   end
 
-  def tag_search pattern
-    # patternを含むタグを持っているファイル名の配列を返す
-    selected_tag = TaggedFile.where("tag like '%#{pattern}%'")
+  def tag_search patterns
+    # patterns を全て含むタグを持っているファイル名の配列を返す
+    # patterns はスペースで区切られた検索patternの文字列を想定
 
-    # patternを含むタグが見つからない場合
+    condition = patterns.split(" ").map{|pattern|"tag like '%#{pattern}%'"}.join(" and ")
+    selected_tag = TaggedFile.select("distinct file_name").where(condition)
+
+    # patternを含むタグが見つからない場合は空の配列を返す
     return [] if selected_tag.empty?
 
     # patternを含むタグを持っているファイル名配列を作る
