@@ -46,21 +46,25 @@ def TaggedFile.tag_search patterns
   # patterns を全て含むタグを持っているファイル名の配列を返す
   # patterns はスペースで区切られた検索patternの文字列を想定
 
-  condition = patterns.split(" ").map{|pattern|"tag like '%#{pattern}%'"}.join(" and ")
-  selected_tag = TaggedFile.select("distinct file_name").where(condition)
+  # pattern にマッチするリストを全部取得
+  conditions = patterns.split(" ").map{|pattern|"tag like '%#{pattern}%'"}
+  pattern_matched_files_list = conditions.map do |cond|
+    TaggedFile.select("distinct file_name").where(cond)
+  end
+  pattern_matched_files_list.map!{|list|list.map!{|file|file.file_name}}
+
+  # 全てのpatternsをtagsに持つファイルのみ残す。(配列の積を使ってる)
+  all_files = TaggedFile.all.map{|item|item.file_name}
+  patterns_matched_files = pattern_matched_files_list.inject(all_files) {|all,n|all & n}
 
   # patternを含むタグが見つからない場合は空の配列を返す
-  return [] if selected_tag.empty?
-
-  # patternを含むタグを持っているファイル名配列を作る
-  selected_tag.map!{|a|a.file_name}
+  return [] if patterns_matched_files.empty?
 
   # タグを持っているファイル名のみ配列に残す
   files = resources_list
   return [] if files.empty?
-
   files.select! do |file|
-    selected_tag.include?(file)
+    patterns_matched_files.any?{|tag| tag.include?(file)}
   end
   files
 end
