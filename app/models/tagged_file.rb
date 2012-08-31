@@ -54,7 +54,7 @@ def TaggedFile.tag_search patterns
   pattern_matched_files_list.map!{|list|list.map!{|file|file.file_name}}
 
   # 全てのpatternsをtagsに持つファイルのみ残す。(配列の積を使ってる)
-  all_files = TaggedFile.all.map{|item|item.file_name}
+  all_files = TaggedFile.select("distinct file_name").map{|a|a.file_name}
   patterns_matched_files = pattern_matched_files_list.inject(all_files) {|all,n|all & n}
 
   # patternを含むタグが見つからない場合は空の配列を返す
