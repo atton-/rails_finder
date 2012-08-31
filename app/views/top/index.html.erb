@@ -22,7 +22,7 @@
   </tr>
   <% @files.each do |file|%>
     <tr>
-      <td><%= link_to file,"#{root_url}/public/resources/#{file}"%></td>
+      <td><%= link_to file,ERB::Util::url_encode("#{root_url}/public/resources/#{file}")%></td>
       <td>
         <% @tags[file].each do |tag| %>
           <%= link_to tag, top_index_path(keywords: tag,radio_param: {search_type: 'tag'})%>
