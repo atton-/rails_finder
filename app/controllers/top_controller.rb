@@ -48,8 +48,7 @@ class TopController < ApplicationController
 
   def file_name_search pattern
     # pattern を含むファイル名の配列を返す
-    TaggedFile.select("distinct file_name").
-      where("file_name like '%#{pattern}%'").map{|a|a.file_name}
+    resources_list.select{|a|a.include? pattern}
   end
 
   def tag_search pattern
