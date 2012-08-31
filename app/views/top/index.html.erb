@@ -9,7 +9,7 @@
 
   <% # 検索フォーム %>
   <%= text_field_tag :keyword,params[:keyword] %>
-  <%= submit_tag "search" %>
+  <%= submit_tag 'search' %>
 <% end %>
 
 
@@ -29,10 +29,10 @@
           <%= " " %>
         <% end %>
       </td>
-      <td><%= link_to "add tag", new_tagged_file_path(file_name: file)%></td>
+      <td><%= link_to '+', new_tagged_file_path(file_name: file)%></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "戻る", :back %>
-<%= link_to "TOP", top_index_path %>
+<%= link_to '戻る', :back %>
+<%= link_to 'TOP', top_index_path %>
