@@ -25,3 +25,9 @@ doc/
 *~
 .project
 .DS_Store
+
+# Ignore public/resources files
+public/resources/*
+
+# not ignore README
+!public/resources/README
