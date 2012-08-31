@@ -14,11 +14,11 @@ class TopController < ApplicationController
     case params[:radio_param][:search_type]
     when "file"
       # ファイル名指定検索
-      @files = file_name_search params[:keyword]
+      @files = file_name_search params[:keywords]
       @tags = collect_tags @files
     when "tag"
       # タグ指定検索
-      @files = tag_search params[:keyword]
+      @files = tag_search params[:keywords]
       @tags = collect_tags @files
     else
       # 何も無し
