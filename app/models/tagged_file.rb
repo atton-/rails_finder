@@ -46,15 +46,14 @@ class TaggedFile < ActiveRecord::Base
     # patterns はスペースで区切られた検索patternの文字列を想定
 
     # pattern にマッチするリストを全部取得
-    conditions = patterns.split(" ").map{|pattern|"tag like '%#{pattern}%'"}
-    pattern_matched_files_list = conditions.map do |cond|
-      self.select("distinct file_name").where(cond)
+    pattern_matched_files_list = patterns.split(" ").each do |pattern|
+      TaggedFile.select("distinct file_name").where("tag like '%#{pattern}%'")
     end
     pattern_matched_files_list.map!{|list|list.map!{|file|file.file_name}}
 
     # 全てのpatternsをtagsに持つファイルのみ残す。(配列の積を使ってる)
     all_files = TaggedFile.select("distinct file_name").map{|a|a.file_name}
-    patterns_matched_files = pattern_matched_files_list.inject(all_files) {|all,n|all & n}
+    patterns_matched_files = pattern_matched_files_list.inject(all_files){|all,n|all & n}
 
     # patternを含むタグが見つからない場合は空の配列を返す
     return [] if patterns_matched_files.empty?
