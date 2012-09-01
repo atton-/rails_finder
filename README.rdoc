@@ -9,6 +9,10 @@ public/resources の下にファイルを置きます。
   rails server
 で起動します。
 
+初回のみ、データベース作成のために
+  rake db:migrate
+を実行してください。
+
 
 == Function
 
