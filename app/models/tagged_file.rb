@@ -46,7 +46,7 @@ class TaggedFile < ActiveRecord::Base
     # patterns はスペースで区切られた検索patternの文字列を想定
 
     # pattern にマッチするリストを全部取得
-    pattern_matched_files_list = patterns.split(" ").each do |pattern|
+    pattern_matched_files_list = patterns.split(" ").map do |pattern|
       TaggedFile.select("distinct file_name").where("tag like '%#{pattern}%'")
     end
     pattern_matched_files_list.map!{|list|list.map!{|file|file.file_name}}
